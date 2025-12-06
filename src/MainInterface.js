@@ -101,7 +101,7 @@ const TimelineItem = ({ item, index, color }) => {
     <motion.div
       initial={{ opacity: 0, y: 50 }}
       whileInView={{ opacity: 1, y: 0, borderColor: color === "blue" ? "#3b82f6" : "#a855f7" }}
-      viewport={{ once: false, margin: "-100px" }}
+      viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.5, delay: index * 0.1 }}
       className={`relative pl-8 pb-12 last:pb-0 border-l-2 border-transparent transition-colors duration-500`}
     >
@@ -135,21 +135,18 @@ const TimelineItem = ({ item, index, color }) => {
 };
 
 const Timeline = ({ data, color }) => {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-  const scaleY = useTransform(scrollYProgress, [0, 1], [0, 1]);
-
   return (
-    <div ref={ref} className="relative ml-4">
+    <div className="relative ml-4">
       {/* Ligne de fond (grise) */}
       <div className="absolute left-0 top-0 bottom-0 w-0.5 bg-gray-200 dark:bg-zinc-800" />
 
       {/* Ligne de remplissage (colorée) */}
       <motion.div
-        style={{ scaleY, originY: 0 }}
+        initial={{ scaleY: 0 }}
+        whileInView={{ scaleY: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 1.5, ease: "easeInOut" }}
+        style={{ originY: 0 }}
         className={`absolute left-0 top-0 bottom-0 w-0.5 ${color === "blue" ? "bg-blue-500" : "bg-purple-500"}`}
       />
 
@@ -159,6 +156,78 @@ const Timeline = ({ data, color }) => {
         ))}
       </div>
     </div>
+  );
+};
+
+const ProjectsSection = ({ projects, t }) => {
+  const [activeProject, setActiveProject] = useState(0);
+
+  return (
+    <section id="projects" className="mb-24 scroll-mt-24 px-6">
+      <div className="max-w-7xl mx-auto">
+        <TextReveal className="mb-12">
+          <h2 className="text-3xl font-bold text-center">{t.projects.title}</h2>
+        </TextReveal>
+
+        <div className="relative grid lg:grid-cols-2 gap-16">
+          {/* COLONNE GAUCHE : Liste des descriptions (Scrollable) */}
+          <div className="flex flex-col gap-24 py-10 pb-[50vh]">
+            {projects.map((project, index) => (
+              <motion.div
+                key={index}
+                // Détection du scroll : quand cet élément arrive au centre, on change l'image
+                onViewportEnter={() => setActiveProject(index)}
+                viewport={{ margin: "-50% 0px -50% 0px" }} // Déclenche quand l'élément est au milieu de l'écran
+                className={`p-6 rounded-xl transition-all duration-500 border border-transparent
+                          ${activeProject === index
+                    ? "bg-white/10 dark:bg-zinc-800/50 border-blue-500/30 shadow-xl scale-105"
+                    : "opacity-50 hover:opacity-80"}`}
+              >
+                <h3 className="text-2xl font-bold mb-4 text-blue-600 dark:text-blue-400">
+                  {project.title}
+                </h3>
+                <p className="text-gray-700 dark:text-gray-300 text-lg leading-relaxed mb-6">
+                  {project.description}
+                </p>
+
+                {/* Tags ou liens spécifiques au projet */}
+                <div className="flex gap-4">
+                  <a
+                    href={project.demoLink}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-sm font-bold border-b-2 border-blue-500 hover:text-blue-500 transition-colors"
+                  >
+                    {t.projects.details} ↗
+                  </a>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* COLONNE DROITE : Image Sticky (Fixe) */}
+          <div className="hidden lg:block h-screen sticky top-24">
+            <div className="relative w-full h-[500px] rounded-xl overflow-hidden border border-zinc-200 dark:border-zinc-700 shadow-2xl bg-zinc-900">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={activeProject} // Clé unique pour forcer l'animation au changement
+                  src={projects[activeProject].image}
+                  alt={projects[activeProject].title}
+                  initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -20, scale: 1.05 }}
+                  transition={{ duration: 0.4, ease: "easeOut" }}
+                  className="absolute inset-0 w-full h-full object-contain"
+                />
+              </AnimatePresence>
+
+              {/* Overlay subtil pour le style */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   );
 };
 
@@ -256,48 +325,55 @@ export default function MainInterface() {
       title: t.experienceList[0].title,
       date: t.experienceList[0].date,
       place: t.experienceList[0].place,
-      icon: <FaServer />,
-      link: "https://www.quebec.ca/gouvernement/ministere/famille"
+      icon: <FaLaptop />,
+      link: "https://www.quebec.ca/gouvernement/ministere/education"
     },
     {
       title: t.experienceList[1].title,
       date: t.experienceList[1].date,
       place: t.experienceList[1].place,
-      icon: <FaUserShield />,
-      link: "https://www.quebec.ca/gouvernement/ministeres-organismes/cybersecurite-numerique"
+      icon: <FaServer />,
+      link: "https://www.quebec.ca/gouvernement/ministere/famille"
     },
     {
       title: t.experienceList[2].title,
       date: t.experienceList[2].date,
       place: t.experienceList[2].place,
-      icon: <FaBuilding />,
-      link: "https://www.ville.quebec.qc.ca/"
+      icon: <FaUserShield />,
+      link: "https://www.quebec.ca/gouvernement/ministeres-organismes/cybersecurite-numerique"
     },
     {
       title: t.experienceList[3].title,
       date: t.experienceList[3].date,
       place: t.experienceList[3].place,
-      icon: <FaFutbol />,
-      link: "https://peps.ulaval.ca/"
+      icon: <FaBuilding />,
+      link: "https://www.ville.quebec.qc.ca/"
     },
     {
       title: t.experienceList[4].title,
       date: t.experienceList[4].date,
       place: t.experienceList[4].place,
-      icon: <FaSchool />,
-      link: "https://www.csfoy.ca/"
+      icon: <FaFutbol />,
+      link: "https://peps.ulaval.ca/"
     },
     {
       title: t.experienceList[5].title,
       date: t.experienceList[5].date,
       place: t.experienceList[5].place,
-      icon: <FaBriefcase />,
-      link: "https://cqcm.coop/"
+      icon: <FaSchool />,
+      link: "https://www.csfoy.ca/"
     },
     {
       title: t.experienceList[6].title,
       date: t.experienceList[6].date,
       place: t.experienceList[6].place,
+      icon: <FaBriefcase />,
+      link: "https://cqcm.coop/"
+    },
+    {
+      title: t.experienceList[7].title,
+      date: t.experienceList[7].date,
+      place: t.experienceList[7].place,
       icon: <FaFutbol />,
       link: "https://www.cstrident.ca/"
     }
@@ -517,29 +593,8 @@ export default function MainInterface() {
         </section>
 
         {/* PROJECTS SECTION WITH PARALLAX */}
-        <section id="projects" className="mb-24 scroll-mt-24 px-6">
-          <div className="max-w-7xl mx-auto">
-            <TextReveal className="mb-12">
-              <h2 className="text-3xl font-bold text-center">{t.projects.title}</h2>
-            </TextReveal>
+        <ProjectsSection projects={projects} t={t} />
 
-            <div className="grid md:grid-cols-2 gap-8">
-              {/* Column 1 - Parallax Effect (Moves faster) */}
-              <motion.div className="flex flex-col gap-8" style={{ y: useTransform(useScroll().scrollYProgress, [0, 1], [0, -50]) }}>
-                {projects.filter((_, i) => i % 2 === 0).map((project, index) => (
-                  <ProjectCard key={index} project={project} setSelectedProject={setSelectedProject} t={t} />
-                ))}
-              </motion.div>
-
-              {/* Column 2 - Parallax Effect (Moves slower/normal) */}
-              <motion.div className="flex flex-col gap-8" style={{ y: useTransform(useScroll().scrollYProgress, [0, 1], [0, 50]) }}>
-                {projects.filter((_, i) => i % 2 !== 0).map((project, index) => (
-                  <ProjectCard key={index} project={project} setSelectedProject={setSelectedProject} t={t} />
-                ))}
-              </motion.div>
-            </div>
-          </div>
-        </section>
 
         {/* DÉMO RESPONSIVE */}
         <section id="demo" className="mb-24 scroll-mt-24 px-6">
@@ -660,15 +715,15 @@ export default function MainInterface() {
         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="fixed bottom-6 right-6 bg-blue-600 text-white p-3 rounded-full shadow-xl hover:bg-blue-700 z-50">
           <FaArrowUp />
         </button>
-      </main>
+      </main >
 
       {/* Bouton retour vers le terminal */}
-      <a
+      < a
         href="/"
         className="fixed bottom-6 left-6 bg-purple-600 text-white px-4 py-2 rounded-full shadow-lg hover:bg-purple-700 transition-transform duration-300 hover:scale-105 z-50"
       >
         ⬅️ Terminal
-      </a>
-    </motion.div>
+      </a >
+    </motion.div >
   );
 }

@@ -157,13 +157,18 @@ export const translations = {
         ],
         experienceList: [
             {
-                title: "Technicien en réseau informatique",
-                date: "Sept. 2024 – Actuellement",
+                title: "Analyste en gestion des actifs informatiques",
+                date: "Juin 2025 – Présent",
+                place: "Ministère de l’Éducation"
+            },
+            {
+                title: "Technicien en réseaux",
+                date: "Sept. 2024 – Juin 2025",
                 place: "Ministère de la Famille"
             },
             {
-                title: "Conseiller gouvernement ouvert",
-                date: "Mai – Sept. 2024",
+                title: "Conseiller en Gouvernement Ouvert",
+                date: "Mai 2024 – Août 2024",
                 place: "Ministère de la Cybersécurité et du Numérique"
             },
             {
@@ -352,13 +357,18 @@ export const translations = {
         ],
         experienceList: [
             {
+                title: "IT Asset Management Analyst",
+                date: "June 2025 – Present",
+                place: "Ministry of Education"
+            },
+            {
                 title: "Network Technician",
-                date: "Sept. 2024 – Present",
+                date: "Sept. 2024 – June 2025",
                 place: "Ministry of Families"
             },
             {
                 title: "Open Government Advisor",
-                date: "May – Sept. 2024",
+                date: "May 2024 – Aug. 2024",
                 place: "Ministry of Cybersecurity and Digital"
             },
             {
@@ -547,13 +557,18 @@ export const translations = {
         ],
         experienceList: [
             {
-                title: "Técnico de Redes Informáticas",
-                date: "Sept. 2024 – Presente",
+                title: "Analista de Gestión de Activos de TI",
+                date: "Junio 2025 – Presente",
+                place: "Ministerio de Educación"
+            },
+            {
+                title: "Técnico de Redes",
+                date: "Sept. 2024 – Junio 2025",
                 place: "Ministerio de la Familia"
             },
             {
                 title: "Asesor de Gobierno Abierto",
-                date: "Mayo – Sept. 2024",
+                date: "Mayo 2024 – Ago. 2024",
                 place: "Ministerio de Ciberseguridad y Digital"
             },
             {
