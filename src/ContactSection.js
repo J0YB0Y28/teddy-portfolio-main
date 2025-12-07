@@ -46,7 +46,7 @@ const MagneticButton = ({ children, href, onClick, title }) => {
 };
 
 export default function ContactSection() {
-    const { t } = useLanguage();
+    const { t, language } = useLanguage();
     const [copied, setCopied] = useState(false);
 
     // 3D Tilt Logic
@@ -116,7 +116,7 @@ export default function ContactSection() {
                                 <FaLinkedin />
                             </MagneticButton>
 
-                            <MagneticButton href="/cv.pdf" title="CV">
+                            <MagneticButton href={language === 'en' ? '/cv_en.pdf' : language === 'es' ? '/cv_es.pdf' : '/cv_fr.pdf'} title="CV">
                                 <FaFilePdf />
                             </MagneticButton>
                         </div>

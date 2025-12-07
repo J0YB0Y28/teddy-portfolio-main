@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+# Teddy Kana - Portfolio Interactif 🚀
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Bienvenue sur le dépôt de mon portfolio personnel ! Ce projet est une vitrine interactive de mes compétences, de mes projets et de mon parcours en tant qu'étudiant en génie logiciel. Il combine une interface web moderne avec une expérience type "terminal" pour les passionnés de tech.
 
-## Available Scripts
+## ✨ Fonctionnalités Principales
 
-In the project directory, you can run:
+- **🌍 Support Multilingue** : Navigation fluide en Français 🇫🇷, Anglais 🇬🇧 et Espagnol 🇪🇸.
+- **🎨 Thèmes Dynamiques** :
+  - ☀️ **Light Mode** : Propre et minimaliste.
+  - 🌙 **Dark Mode** : Élégant et reposant pour les yeux.
+  - 👾 **Hacker Mode** : Un thème vert sur noir inspiré des terminaux rétro.
+- **🖥️ Interface Terminal** : Une ligne de commande interactive permet de naviguer sur le site (tapez `help` pour commencer !).
+- **🧊 Éléments 3D** : Intégration d'objets 3D interactifs (TechCube) avec `react-three-fiber`.
+- **📱 100% Responsif** : Expérience optimisée pour mobile, tablette et desktop.
+- **✨ Animations Fluides** : Utilisation intensive de `framer-motion` pour des transitions soignées.
 
-### `npm start`
+## 🛠️ Stack Technologique
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Ce projet a été construit avec les technologies suivantes :
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- **[React.js](https://reactjs.org/)** : Bibliothèque UI principale.
+- **[TailwindCSS](https://tailwindcss.com/)** : Framework CSS utilitaire pour le styling.
+- **[Framer Motion](https://www.framer.com/motion/)** : Pour les animations complexes et les transitions de page.
+- **[Three.js](https://threejs.org/) / [React Three Fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)** : Pour le rendu 3D.
+- **[Typewriter-effect](https://www.npmjs.com/package/typewriter-effect)** : Pour les effets de texte dynamique.
 
-### `npm test`
+## 🚀 Installation et Lancement
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Pour lancer ce projet localement sur votre machine :
 
-### `npm run build`
+1.  **Cloner le dépôt** :
+    ```bash
+    git clone https://github.com/J0YB0Y28/teddy-portfolio-main.git
+    cd teddy-portfolio-main
+    ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2.  **Installer les dépendances** :
+    ```bash
+    npm install
+    ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+3.  **Lancer le serveur de développement** :
+    ```bash
+    npm start
+    ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4.  Ouvrez [http://localhost:3000](http://localhost:3000) dans votre navigateur pour voir le résultat.
 
-### `npm run eject`
+## 📂 Structure du Projet
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- `src/components` : Composants réutilisables (Boutons, Cartes, etc.).
+- `src/contexts` : Gestion de l'état global (Langue).
+- `src/data` : Fichiers de traduction et données statiques.
+- `src/images` : Assets graphiques.
+- `src/MainInterface.js` : Composant principal de la page d'accueil.
+- `src/TerminalIntro.js` : Composant de l'intro et du terminal.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## 📬 Contact
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+N'hésitez pas à me contacter pour toute question ou opportunité !
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- **Email** : [kanaboumkwoiit@outlook.com](mailto:kanaboumkwoiit@outlook.com)
+- **LinkedIn** : [Teddy Kana](https://www.linkedin.com/in/teddy-kana-6a26832b9/)
+- **GitHub** : [J0YB0Y28](https://github.com/J0YB0Y28)
 
-## Learn More
+---
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+*Développé avec ❤️ et passion par Teddy Kana.*
